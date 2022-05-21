@@ -1,4 +1,4 @@
-# Project crated with learning purposes
+# Project created with learning purposes
 
 Project created with Create React App with Jest and Testing Library, all this to create tests of React components and functionalities.
 
