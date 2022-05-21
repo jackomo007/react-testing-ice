@@ -29,11 +29,9 @@ test('handles error for scoops and toppings routes', async () => {
 test('disable order button if there are no scoops ordered', async () => {
     render(<OrderEntry setOrderPhase={jest.fn()} />);
 
-    // order button should be disabled at first, even before options load
     let orderButton = screen.getByRole('button', { name: /order sundae/i });
     expect(orderButton).toBeDisabled();
 
-    // expect button to be enabled after adding scoop
     const vanillaInput = await screen.findByRole('spinbutton', {
         name: 'Vanilla',
     });
@@ -41,7 +39,6 @@ test('disable order button if there are no scoops ordered', async () => {
     userEvent.type(vanillaInput, '1');
     expect(orderButton).toBeEnabled();
 
-    // expect button to be disabled again after removing scoop
     userEvent.clear(vanillaInput);
     userEvent.type(vanillaInput, '0');
     expect(orderButton).toBeDisabled();

@@ -4,11 +4,17 @@ import Button from "react-bootstrap/Button";
 import Popover from "react-bootstrap/Popover";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
-const SummaryForm = () => {
+export default function SummaryForm({ setOrderPhase }) {
   const [tcChecked, setTcChecked] = useState(false);
 
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    setOrderPhase("completed");
+  }
+
   const popover = (
-    <Popover id="popover-basic">
+    <Popover id="termsandconditions-popover">
       <Popover.Body>No ice cream will actually be delivered</Popover.Body>
     </Popover>
   );
@@ -17,13 +23,13 @@ const SummaryForm = () => {
     <span>
       I agree to
       <OverlayTrigger placement="right" overlay={popover}>
-        <span style={{ color: "blue" }}>Terms and Conditions</span>
+        <span style={{ color: "blue" }}> Terms and Conditions</span>
       </OverlayTrigger>
     </span>
   );
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Form.Group controlId="terms-and-conditions">
         <Form.Check
           type="checkbox"
@@ -37,6 +43,4 @@ const SummaryForm = () => {
       </Button>
     </Form>
   );
-};
-
-export default SummaryForm;
+}
