@@ -1,9 +1,10 @@
 import { render, screen } from "@testing-library/react";
+import { OrderDetailsProvider } from "../../../context/OrderDetails";
 
 import Options from "../Options";
 
 test("displays image for each scoop option from server", async () => {
-  render(<Options optionType="scoops" />);
+  render(<Options optionType="scoops" />, { wrapper: OrderDetailsProvider });
 
   const scoopImages = await screen.findAllByRole("img", { name: /scoop$/i });
   expect(scoopImages).toHaveLength(2);
